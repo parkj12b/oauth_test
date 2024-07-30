@@ -45,7 +45,13 @@ app.get('/auth/callback', async (req, res) => {
 
 app.get('/test', async (req, res) => {
 	const cookies = req.cookies;
-  	const response = await axios.get(`https://api.intra.42.fr/v2/projects?Authorization=${cookies.oauth}`);
+	try {
+		const response = await axios.get(`https://api.intra.42.fr/v2/projects?Authorization=${cookies.oauth}`);
+	} catch (error) {
+		console.log('Error:', error.message);
+		console.log(error.response);
+		res.status(500).json({ error: 'Failed to send request'});
+	}
   	res.send(response.data);
 });
 
