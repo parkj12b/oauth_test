@@ -29,3 +29,14 @@ async function getData() {
         console.error('Error:', error);
     }
 }
+
+async function receiveToken() {
+    const url = 'http//ec2-35-77-196-143.ap-northeast-1.compute.amazonaws.com:3000/auth/callback';
+    try {
+        const data = await fetchData(url);
+
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
