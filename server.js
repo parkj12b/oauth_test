@@ -9,10 +9,16 @@ const UID = process.env.UID;
 const SECRET = process.env.SECRET;
 const grant_type = "client_credentials";
 const axios = require('axios');
+const cookieParser = require('cookie-parser');
+const path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+app.get("/", (req, res) => {
+	res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.get('/auth/callback', async (req, res) => {
   const code = req.query.code;
