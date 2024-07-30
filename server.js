@@ -45,6 +45,7 @@ app.get('/auth/callback', async (req, res) => {
 
 app.get('/test', async (req, res) => {
 	const cookies = req.cookies;
+	console.log(cookies.oauth);
 	try {
 		const response = await axios.get(`https://api.intra.42.fr/v2/projects`, {
 			headers: {
