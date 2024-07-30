@@ -42,7 +42,7 @@ app.get('/auth/callback', async (req, res) => {
   // Exchange code for an access token, etc.
 });
 
-app.post('/test', async (req, res) => {
+app.get('/test', async (req, res) => {
 	const cookies = req.cookies;
   	const response = await axios.get(`https://api.intra.42.fr/v2/projects?Authorization=${cookies.oauth}`);
   	res.send(response.data);
