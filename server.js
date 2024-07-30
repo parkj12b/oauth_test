@@ -34,7 +34,12 @@ app.get('/auth/callback', async (req, res) => {
 		redirect_uri: "http://ec2-35-77-196-143.ap-northeast-1.compute.amazonaws.com:3000/auth/callback"
 	});
 	console.log(response.data);
-	res.send(response.data);
+	res.cookie('oauth', response.data.access_token, { 
+		httpOnly: true,
+		secure: false,
+		maxAge: response.data.expires_in * 1000 
+	});
+	res.send("");
 	} catch (error) {
 		console.log('Error:', error.message);
 		console.log(error.response);
