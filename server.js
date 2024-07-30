@@ -41,6 +41,7 @@ app.get('/auth/callback', async (req, res) => {
 	});
 	res.send("");
 	} catch (error) {
+		res.cookie('oauth', '', { maxAge: 0 });
 		console.log('Error:', error.message);
 		console.log(error.response);
 		res.status(500).json({ error: 'Failed to send request'});
