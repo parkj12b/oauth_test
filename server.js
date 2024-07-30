@@ -12,6 +12,7 @@ const axios = require('axios');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.get('/auth/callback', async (req, res) => {
   const code = req.query.code;
@@ -35,10 +36,10 @@ app.get('/auth/callback', async (req, res) => {
   // Exchange code for an access token, etc.
 });
 
-app.post('/token', (req, res) => {
-  const { grant_type, code, redirect_uri } = req.body;
-  // Handle token exchange, validate code, etc.
-  res.json({ access_token: 'your_access_token' });
+app.post('/test', async (req, res) => {
+	const cookies = req.cookies;
+  	const response = await axios.get(`https://api.intra.42.fr/v2/projects?Authorization=${cookies.oauth}`);
+  	res.send(response.data);
 });
 
 app.listen(port, () => {
