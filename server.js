@@ -46,7 +46,7 @@ app.get('/auth/callback', async (req, res) => {
 app.get('/test', async (req, res) => {
 	const cookies = req.cookies;
 	try {
-		const response = await axios.get(`https://api.intra.42.fr/v2/projects?Authorization=${cookies.oauth}`);
+		const response = await axios.get(`https://api.intra.42.fr/v2/projects?Authorization=Bearer ${cookies.oauth}`);
 		res.send(response.data);
 	} catch (error) {
 		console.log('Error:', error.message);
