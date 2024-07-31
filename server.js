@@ -13,14 +13,28 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const cors = require('cors');
 
+const algoliasearch = require('algoliasearch');
+const algoliaId = process.env.ALGOLIA_ID;
+const algoliaWrite = process.env.ALGOLIA_WRITE;
+
+const client = algolisearch(algoliaId, algoliaWrite);
+const index = client.initIndex('projects');
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname)));
 
-app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname, 'algolia.html'));
+app.get("/", async (req, res) => {
+	const {record} = req.body;
+	try {
+		await index.saveObject(record, { autoGenerateObjectIDIfNotExist: true });
+		res.status(200);
+		res.sendFile(path.join(__dirname, 'algolia.html'));
+	  } catch (error) {
+		res.status(500).send(`Error adding/updating record: ${error.message}`);
+	  }
 });
 
 app.get('/auth/callback', async (req, res) => {

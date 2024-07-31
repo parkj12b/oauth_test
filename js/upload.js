@@ -5,8 +5,8 @@ export async function getAlgoliaData() {
   .then((data) => data.json())
   .then((records) => {
     const client = algoliasearch(
-      "P9B9TDIMRS",
-      "21f8ebaed5bfa1b68a6bee00259b0b0e"
+      "D92FAAH3QP",
+      "763689b3f235c53aca520209cf84c0eb"
     );
 
     const index = client.initIndex("your_index_name");
