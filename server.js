@@ -24,6 +24,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+//serving static files
 app.use(express.static(path.join(__dirname)));
 
 app.get("/", async (req, res) => {
@@ -38,7 +40,7 @@ app.get("/", async (req, res) => {
 			console.error(error);
 		});
 	try {
-		
+		res.render('index', { title: 'Home Page' });
 		res.status(200);
 	  } catch (error) {
 		console.error(error);		
