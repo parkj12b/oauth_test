@@ -17,7 +17,7 @@ const algoliasearch = require('algoliasearch');
 const algoliaId = process.env.ALGOLIA_ID;
 const algoliaWrite = process.env.ALGOLIA_WRITE;
 
-const client = algolisearch(algoliaId, algoliaWrite);
+const client = algoliasearch(algoliaId, algoliaWrite);
 const index = client.initIndex('projects');
 
 app.use(cors());
