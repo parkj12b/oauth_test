@@ -18,3 +18,5 @@ export async function getAlgoliaData() {
     console.error(error);
   });
 }
+
+window.getAlgoliaData = getAlgoliaData;
