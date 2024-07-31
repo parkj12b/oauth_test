@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname)));
 
 app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname, 'index.html'));
+	res.sendFile(path.join(__dirname, 'algolia.html'));
 });
 
 app.get('/auth/callback', async (req, res) => {
@@ -39,8 +39,8 @@ app.get('/auth/callback', async (req, res) => {
 		secure: false,
 		maxAge: response.data.expires_in * 1000 
 	});
-	res.redirect('http://ec2-35-77-196-143.ap-northeast-1.compute.amazonaws.com:3000');
 	res.send(response.data);
+	res.redirect('http://ec2-35-77-196-143.ap-northeast-1.compute.amazonaws.com:3000');
 	} catch (error) {
 		console.log('Error:', error.message);
 		console.log(error.response);
