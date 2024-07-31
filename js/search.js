@@ -1,12 +1,7 @@
 const searchClient = algoliasearch('D92FAAH3QP', '5d528996ae02dbe0b55596d1736f1ed0');
-const index = searchClient.initIndex("your_index_name");
 
 const { connectAutocomplete } = instantsearch.connectors;
 // or directly use instantsearch.connectors.connectAutocomplete()
-const search = instantsearch({
-  indexName: 'demo_ecommerce',
-  searchClient,
-});
 
 // Helper for the render function
 const renderIndexListItem = ({ indexId, hits }) => `
