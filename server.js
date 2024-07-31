@@ -27,13 +27,21 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname)));
 
 app.get("/", async (req, res) => {
-	const {record} = req.body;
+	fetch("http://ec2-35-77-196-143.ap-northeast-1.compute.amazonaws.com:3000/test")
+		.then((data) => data.json())
+		.then(async (records) => {
+
+			console.log({index});
+			await index.saveObjects(records, { autoGenerateObjectIDIfNotExist: true });
+		})
+		.catch((error) => {
+			console.error(error);
+		});
 	try {
-		await index.saveObject(record, { autoGenerateObjectIDIfNotExist: true });
+		
 		res.status(200);
-		res.sendFile(path.join(__dirname, 'algolia.html'));
 	  } catch (error) {
-		res.status(500).send(`Error adding/updating record: ${error.message}`);
+		console.error(error);		
 	  }
 });
 

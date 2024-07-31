@@ -11,12 +11,20 @@
     <button id="uploadButton" onclick="getAlgoliaData()">Upload Data to Algolia</button>
     <div id="result"></div>
 
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM fully loaded and parsed');
-            // Call your function here
-            loadAlgolia();
-        });
-    </script> -->
+    <script>
+        const search = instantsearch({
+  indexName: 'instant_search',
+  searchClient: algoliasearch(
+    'D92FAAH3QP',
+    '5d528996ae02dbe0b55596d1736f1ed0'
+  ),
+});
+
+// Add widgets
+// ...
+
+search.start();
+
+</script>
 </body>
 </html>
