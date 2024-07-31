@@ -11,7 +11,9 @@ const grant_type = "client_credentials";
 const axios = require('axios');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const cors = require('cors');
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());

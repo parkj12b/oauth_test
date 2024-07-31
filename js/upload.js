@@ -1,6 +1,11 @@
-import algoliasearch from 'https://cdn.jsdelivr.net/npm/algoliasearch@4.17.0/dist/algoliasearch-lite.esm.browser.js';
+async function loadAlgolia() {
+  const algoliasearch = await import(
+    "https://cdn.jsdelivr.net/npm/algoliasearch@4.17.0/dist/algoliasearch-lite.esm.browser.js"
+  );
+}
 
-fetch("http://ec2-35-77-196-143.ap-northeast-1.compute.amazonaws.com:3000/test")
+async function getAlgoliaData() {
+  fetch("http://ec2-35-77-196-143.ap-northeast-1.compute.amazonaws.com:3000/test")
   .then((data) => data.json())
   .then((records) => {
     const client = algoliasearch(
@@ -10,8 +15,10 @@ fetch("http://ec2-35-77-196-143.ap-northeast-1.compute.amazonaws.com:3000/test")
 
     const index = client.initIndex("your_index_name");
 
+	console.log({index});
     index.saveObjects(records, { autoGenerateObjectIDIfNotExist: true });
   })
   .catch((error) => {
     console.error(error);
   });
+}
