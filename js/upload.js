@@ -1,6 +1,6 @@
 import algoliasearch from 'https://cdn.jsdelivr.net/npm/algoliasearch@4.24.0/dist/algoliasearch.esm.browser.js';
 
-async function getAlgoliaData() {
+export async function getAlgoliaData() {
   fetch("http://ec2-35-77-196-143.ap-northeast-1.compute.amazonaws.com:3000/test")
   .then((data) => data.json())
   .then((records) => {
